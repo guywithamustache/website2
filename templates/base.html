@@ -1,0 +1,71 @@
+<!-- standard html layout-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title> 
+      <!-- so the child pages can inherit from the parent-->
+    	{% block title %}Home{% endblock %}
+    </title>
+  </head>
+  <body>
+    <!-- to make it look nice-->
+  	<nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+  			<span class="navbar-toggle-icon"></span>
+  		</button>
+  		<div class="collapse navbar-collapse" id="navbar">
+  				</div class="navbar-nav">
+            <a class="nav-item nav-link" id="login" href="/login">Login</a>
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <a class="nav-item nav-link" id="sign-up" href="/sign-up">Sign-up</a>
+  					<a class="nav-item nav-link" id="musk" href="/musk">Musk</a>
+  					<a class="nav-item nav-link" id="yosef" href="/yosef">Yosef</a>
+  					<a class="nav-item nav-link" id="home" href="/">Home</a>
+  				</div>
+  		</div>
+  	</nav>
+
+{% with messages= get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+  {% if category == 'error' %}
+  <div class='alert alert-danger alter dismissable fade show' role ="alert">
+    {{message}}
+    <button type = "button" class="close data=-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  {%else%}
+  </div>
+    <div class='alert alert-success alter dismissable fade show' role ="alert">
+    {{message}}
+    <button type = "button" class="close data=-dismiss="alert">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {%endif%}
+  {% endfor %}
+  {%endif%}
+{% endwith %}
+
+  <!-- so the child pages can inherit from the parent-->
+    <div class = "container">
+    {% block content %}
+    {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <p>{{datetime}}</p>
+  </body>
+</html>
